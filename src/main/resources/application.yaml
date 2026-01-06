@@ -1,0 +1,27 @@
+server:
+  port: 9090
+spring:
+  application:
+    name: llm-demo-rag-and-mcp-client
+  datasource:
+    url: jdbc:postgresql://localhost:5432/demo
+    username: app
+    password: password
+  ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 1024
+    ollama:
+      chat:
+        options:
+          model: llama3.1
+          internal-tool-execution-enabled: true #Разрешает LLM самой вызывать MCP-сервер
+    mcp:
+      client:
+        type: SYNC
+        streamable-http:
+          connections:
+            version-mcp-service:
+              url: http://localhost:8080
