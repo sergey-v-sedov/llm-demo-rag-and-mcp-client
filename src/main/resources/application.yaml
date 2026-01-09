@@ -17,7 +17,6 @@ spring:
       chat:
         options:
           model: llama3.1
-          internal-tool-execution-enabled: true #Разрешает LLM самой вызывать MCP-сервер
     mcp:
       client:
         type: SYNC
@@ -25,3 +24,6 @@ spring:
           connections:
             version-mcp-service:
               url: http://localhost:8080
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG #  This tells Spring AI to log the conversation
